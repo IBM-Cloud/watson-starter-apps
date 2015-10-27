@@ -10,8 +10,7 @@ Started apps included in this repository:
 
 ## Updading starter apps in Bluemix
 
-This instructions will help you build and deploy starter apps in bluemix. The boilerples are just Bluemix applications.  
-Once they are running in Bluemix, you just need to use `cloud-cli` to register `metadata.json` files.
+This instructions will help you build and deploy the watson starter apps in Bluemix. Once they are running in Bluemix, you can use `cloud-cli` to register them as starter apps in the Bluemix Catalog.
 
 1. Install the [cf][cf] command-line tool. You need to have a [.cfignore](.cfignore)) file.
 1. Install the cloud-cli command-line tool.
