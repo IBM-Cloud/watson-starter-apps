@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="wpsboilerplates" basedir="." default="build">
+<project name="watson-starter-apps" basedir="." default="build">
 
 	<!-- inherited properties -->
+	<tstamp>
+		<format property="time.stamp" pattern="yyyy-MM-dd"/>
+	</tstamp>
 	<property name="build" value="build" />
-	<property name="buildLabel" value="wps" />
 	<property name="package" value="${build}/" />
 	<property name="templateWarDir" value="${build}/templateWarDir" />
 	<property name="templateProject" value="./apps" />
-	<property name="templateCatalogWar" value="${package}/boilerplates-${buildLabel}.war" />
-
+	<property name="templateCatalogWar" value="${package}/watson-starter-apps-${time.stamp}.war" />
 
 	<!-- specific to this build -->
 	<property name="templateWebXML" value="${basedir}/web.xml" />
@@ -65,13 +66,13 @@
 		<delete file="${templateCatalogWar}" />
 	</target>
 
-	<target name="build" depends="buildJavaBoilerplateWars, clean, war" >
+	<target name="build" depends="buildJavaWars, clean, war" >
 		<echo>Deleting ${templateWarDir} </echo>
 		<delete dir="${templateWarDir}" />
 
 	</target>
 
-	<target name="buildJavaBoilerplateWars">
+	<target name="buildJavaWars">
 		<ant antfile="${templateProject}/pi-java-starter/app/build.xml" target="build" useNativeBasedir="true"/>
 	</target>
 </project>
