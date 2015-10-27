@@ -1,14 +1,14 @@
-# Watson Developer Cloud - Boilerplates
+# Watson Starter Apps
 
-Boilerplates for IBM Watson Services.  
+starter apps for IBM Watson Services.  
  1. Personality Insights - Java
  2. Personality Insights - Nodejs  
-![boilerplates](http://s17.postimg.org/bqcusezfj/Screen_Shot_2015_07_03_at_5_28_11_PM.png)
+![starter apps](http://s17.postimg.org/bqcusezfj/Screen_Shot_2015_07_03_at_5_28_11_PM.png)
 
 
-## Updading Boilerplates in Bluemix
+## Updading starter apps in Bluemix
 
-This instructions will help you build and deploy boilerplates in bluemix. The boilerples are just Bluemix applications.  
+This instructions will help you build and deploy starter apps in bluemix. The boilerples are just Bluemix applications.  
 Once they are running in Bluemix, you just need to use `cloud-cli` to register `metadata.json` files.
 
 1. Install the [cf][cf] command-line tool. You need to have a [.cfignore](.cfignore)) file.
@@ -37,42 +37,42 @@ Once they are running in Bluemix, you just need to use `cloud-cli` to register `
     ```sh
     cloud-cli login
     ```
-1. Compile the boilerplate code and generate the war package using ant.
+1. Compile the starter app code and generate the war package using ant.
 
     ```sh
     ant
     ```
 
-1. Delete the existing boilerplates
+1. Delete the existing starter apps
 
     ```sh
-    cf delete boilerplates-wps
+    cf delete starter apps-wps
     ```
 
 1. Deploy your app:
     ```sh
-    cf push boilerplates-wps -p build/boilerplates-wps.war
+    cf push starter apps-wps -p build/starter apps-wps.war
     ```
 
 Make sure you are a developer in the space and organization where you want to push the app
 
-1. Register each boilerplate by doing
+1. Register each starter app by doing
     ```sh
-    cloud-cli deregister-template "${boilerplate_name}"
-    cloud-cli register-template "${boilerplate_name}" \
-    -url "http://boilerplates-wps.stage1.mybluemix.net/${boilerplate_name}/metadata.json"
+    cloud-cli deregister-template "${starter app_name}"
+    cloud-cli register-template "${starter app_name}" \
+    -url "http://starter apps-wps.stage1.mybluemix.net/${starter app_name}/metadata.json"
     ```
 
-1. List the existing boilerplate templates
+1. List the existing starter app templates
     ```sh
     cloud-cli templates
     ```
 
-**Note:** It may take up to 15 minutes for Bluemix to update the boilerplates in the UI and back-end services.
+**Note:** It may take up to 15 minutes for Bluemix to update the starter apps in the UI and back-end services.
 
 ### Files
 
-The boilerplate sandobox application contains the following contents:
+The starter app sandobox application contains the following contents:
 
 *   build/
 
@@ -80,11 +80,11 @@ The boilerplate sandobox application contains the following contents:
 
 *   app/
 
-    This directory contains the the applications that will be expose as boilerplates. The content inside this directory is all you need to generate the boilerplate and include the metadata.js file.
+    This directory contains the the applications that will be expose as starter apps. The content inside this directory is all you need to generate the starter app and include the metadata.js file.
 
 *   build.xml
 
-    This file allows you to easily build your application using Ant. It will generate a boilerplates-wps.war file based on the apps/ directory
+    This file allows you to easily build your application using Ant. It will generate a starter apps-wps.war file based on the apps/ directory
 
 *   create-dump-server.sh
 
@@ -92,7 +92,7 @@ The boilerplate sandobox application contains the following contents:
 
 *   web.xml
 
-	This file is used in the boilerplates-wps.war
+	This file is used in the starter apps-wps.war
 
 [cloud_cli]: https://www.stage1.ng.bluemix.net/docs/cli/cloudcli.html
 [cf]: https://github.com/cloudfoundry/cli
