@@ -1,8 +1,10 @@
 # Watson Starter Apps
+This repository contains the Watson starter apps listed in the Bluemix Catalog.
 
-starter apps for IBM Watson Services.  
- 1. Personality Insights - Java
- 2. Personality Insights - Nodejs  
+Started apps included in this repository:
+ * Personality Insights - Java
+ * Personality Insights - Nodejs  
+
 ![starter apps](http://s17.postimg.org/bqcusezfj/Screen_Shot_2015_07_03_at_5_28_11_PM.png)
 
 
@@ -43,24 +45,18 @@ Once they are running in Bluemix, you just need to use `cloud-cli` to register `
     ant
     ```
 
-1. Delete the existing starter apps
-
-    ```sh
-    cf delete starter apps-wps
-    ```
-
 1. Deploy your app:
     ```sh
-    cf push starter apps-wps -p build/starter apps-wps.war
+    cf push starter-apps-wps -p build/watson-starter-apps-{date}.war
     ```
-
-Make sure you are a developer in the space and organization where you want to push the app
+    Where `{date}` is the current date as `yyyy-MM-dd`  
+    Make sure you are a developer in the space and organization where you want to push the app
 
 1. Register each starter app by doing
     ```sh
-    cloud-cli deregister-template "${starter app_name}"
-    cloud-cli register-template "${starter app_name}" \
-    -url "http://starter apps-wps.stage1.mybluemix.net/${starter app_name}/metadata.json"
+    cloud-cli deregister-template "${starterapp-name}"
+    cloud-cli register-template "${starter-app-name}" \
+    -url "http://starter-apps-wps.mybluemix.net/${starter-app-name}/metadata.json"
     ```
 
 1. List the existing starter app templates
