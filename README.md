@@ -14,7 +14,7 @@ This instructions will help you build and deploy starter apps in bluemix. The bo
 Once they are running in Bluemix, you just need to use `cloud-cli` to register `metadata.json` files.
 
 1. Install the [cf][cf] command-line tool. You need to have a [.cfignore](.cfignore)) file.
-1. Install the [cloud-cli][cloud_cli] command-line tool.
+1. Install the cloud-cli command-line tool.
 1. Connect to Bluemix with cf:
 
     ```sh
@@ -90,5 +90,4 @@ The starter app sandobox application contains the following contents:
 
 	This file is used in the starter apps-wps.war
 
-[cloud_cli]: https://www.stage1.ng.bluemix.net/docs/cli/cloudcli.html
 [cf]: https://github.com/cloudfoundry/cli
