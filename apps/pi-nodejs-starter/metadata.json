@@ -1,0 +1,33 @@
+{
+    "name": "Personality Insights Node.js Web Starter",
+    "services": [
+        {
+            "name": "personality_insights",
+            "plan": "standard"
+        }
+    ],
+    "defaultMemory": 512,
+    "startCommand": "node app.js",
+    "description": "A simple Node.js app that uses Personality Insights to analyze text to derive personality traits. This boilerplate will be DEPRECATED soon, please use the Deploy to Bluemix in: https://github.com/watson-developer-cloud/personality-insights-nodejs",
+    "type": "web",
+    "version": "1.2",
+    "smallIcon": "pi-node-24.png",
+    "icon": "pi-node-32.png",
+    "largeIcon": "pi-node-50.png",
+    "featuredIcon": "pi-node-64.png",
+    "instructions": "app/README.md",
+    "source": {
+        "scmType": "git",
+        "url": ".git",
+        "appPath": "app"
+    },
+    "docURL": "http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/personality-insights.html",
+    "system_tags": ["ibm_created"],
+    "runtime_id": "763dcb4a-8642-4676-ae17-ca5bd032ad9e",
+    "runtime": {
+        "name": "SDK for Node.js™",
+        "description": "Quickly get started with SDK for Node.js™."
+    },
+    "categories": ["boilerplate"],
+    "runtime_template_id": "nodejsHelloWorld"
+}

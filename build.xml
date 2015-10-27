@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="wpsboilerplates" basedir="." default="build">
+
+	<!-- inherited properties -->
+	<property name="build" value="build" />
+	<property name="buildLabel" value="wps" />
+	<property name="package" value="${build}/" />
+	<property name="templateWarDir" value="${build}/templateWarDir" />
+	<property name="templateProject" value="./apps" />
+	<property name="templateCatalogWar" value="${package}/boilerplates-${buildLabel}.war" />
+
+
+	<!-- specific to this build -->
+	<property name="templateWebXML" value="${basedir}/web.xml" />
+
+	<target name="war" depends="check-war" unless="templateWarCreated">
+		<antcall target="clean" />
+		<mkdir dir="${templateWarDir}" />
+
+		<echo>Copying templates to WAR directory</echo>
+		<copy todir="${templateWarDir}">
+			<fileset dir="${templateProject}" casesensitive="false">
+				<include name="**/pi-java-starter/**" />
+				<include name="**/pi-nodejs-starter/**" />
+				<include name=".cfignore" /> <!--This is IMPORTANT -->
+			</fileset>
+		</copy>
+
+		<echo>Creating git repositories and dumb servers</echo>
+		<antcall target="createDumbServer" />
+
+		<echo>Packaging WAR</echo>
+		<war destfile="${templateCatalogWar}" basedir="${templateWarDir}" defaultexcludes="no" webxml="${templateWebXML}" />
+	</target>
+
+	<target name = "createDumbServer" depends="createDumbServerWindows, createDumbServerUnix">
+
+	</target>
+
+	<target name = "createDumbServerWindows" if="isWindows">
+		<apply executable="${basedir}/create-dumb-server.bat">
+			<dirset dir="${templateWarDir}" includes="*" />
+		</apply>
+	</target>
+	<target name = "createDumbServerUnix" if="isLinux">
+		<apply executable="${basedir}/create-dumb-server.sh">
+			<dirset dir="${templateWarDir}" includes="*" />
+		</apply>
+	</target>
+
+	<condition property="isWindows">
+		<os family="windows" />
+	</condition>
+
+	<condition property="isLinux">
+		<os family="unix" />
+	</condition>
+
+	<target name="check-war">
+		<available property="templateWarCreated" file="${templateCatalogWar}" />
+	</target>
+
+	<target name="clean">
+		<delete dir="${templateWarDir}" />
+		<delete file="${templateCatalogWar}" />
+	</target>
+
+	<target name="build" depends="buildJavaBoilerplateWars, clean, war" >
+		<echo>Deleting ${templateWarDir} </echo>
+		<delete dir="${templateWarDir}" />
+
+	</target>
+
+	<target name="buildJavaBoilerplateWars">
+		<ant antfile="${templateProject}/pi-java-starter/app/build.xml" target="build" useNativeBasedir="true"/>
+	</target>
+</project>
