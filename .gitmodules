@@ -1,6 +1,0 @@
-[submodule "personality-insights-nodejs-starter/app"]
-	path = personality-insights-nodejs-starter/app
-	url = https://github.com/watson-developer-cloud/personality-insights-nodejs
-[submodule "personality-insights-java-starter/app"]
-	path = personality-insights-java-starter/app
-	url = https://github.com/watson-developer-cloud/personality-insights-java
