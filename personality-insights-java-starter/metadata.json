@@ -7,7 +7,7 @@
         }
     ],
     "defaultMemory": 512,
-    "description": "A simple Java app that uses the Personality Insights service to analyze text to derive personality traits. This boilerplate will be DEPRECATED soon, please use the Deploy to Bluemix in: https://github.com/watson-developer-cloud/personality-insights-java",
+    "description": "A simple Java app that uses the Personality Insights service to analyze text to derive personality traits.",
     "type": "web",
     "version": "1.2",
     "smallIcon": "pi-java-24.png",
@@ -17,11 +17,11 @@
     "executableFile": "output/webApp.war",
     "instructions": "app/README.md",
     "system_tags": ["ibm_created"],
-    "source": {
-        "scmType": "git",
-        "url": ".git",
-        "appPath": "app"
-    },
+    "source" : {
+  		"scmType" : "git",
+  		"url" : "https://github.com/IBM-Bluemix/watson-starter-apps.git",
+  		"appPath" : "personality-insights-java-starter/app"
+  	},
     "docURL": "http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/personality-insights.html",
     "runtime": {
         "name": "Liberty for Java",
