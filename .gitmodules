@@ -1,0 +1,6 @@
+[submodule "personality-insights-java-starter/app"]
+	path = personality-insights-java-starter/app
+	url = git://github.com/watson-developer-cloud/personality-insights-java.git
+[submodule "personality-insights-nodejs-starter/app"]
+	path = personality-insights-nodejs-starter/app
+	url = git://github.com/watson-developer-cloud/personality-insights-nodejs.git
