@@ -14,3 +14,5 @@ The IBM Bluemix Developer Advocate team maintains these starter apps and would l
 # License
 
 See [LICENSE](LICENSE) file.
+
+[bluemix]: https://console.ng.bluemix.net/
