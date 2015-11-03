@@ -15,7 +15,6 @@
     "largeIcon": "pi-java-50.png",
     "featuredIcon": "pi-java-64.png",
     "executableFile": "output/webApp.war",
-    "instructions": "app/README.md",
     "system_tags": ["ibm_created"],
     "source" : {
   		"scmType" : "git",
