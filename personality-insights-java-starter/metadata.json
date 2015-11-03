@@ -19,8 +19,8 @@
     "system_tags": ["ibm_created"],
     "source" : {
   		"scmType" : "git",
-  		"url" : "https://github.com/IBM-Bluemix/watson-starter-apps.git",
-  		"appPath" : "personality-insights-java-starter/app"
+  		"url" : "https://github.com/watson-developer-cloud/personality-insights-java.git",
+  		"appPath" : "."
   	},
     "docURL": "http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/personality-insights.html",
     "runtime": {
