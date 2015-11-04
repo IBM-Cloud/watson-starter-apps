@@ -10,7 +10,7 @@
     "startCommand": "node app.js",
     "description": "A simple Node.js app that uses Personality Insights to analyze text to derive personality traits.",
     "type": "web",
-    "version": "1.2",
+    "version": "1.5",
     "smallIcon": "pi-node-24.png",
     "icon": "pi-node-32.png",
     "largeIcon": "pi-node-50.png",
@@ -18,7 +18,7 @@
     "source" : {
   		"scmType" : "git",
   		"url" : "https://github.com/IBM-Bluemix/watson-starter-apps.git",
-  		"appPath" : "personality-insights-nodejs-starter/app"
+  		"appPath" : "pi-nodejs/app"
   	},
     "docURL": "http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/personality-insights.html",
     "system_tags": ["ibm_created"],

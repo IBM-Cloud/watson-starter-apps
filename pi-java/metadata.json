@@ -9,7 +9,7 @@
     "defaultMemory": 512,
     "description": "A simple Java app that uses the Personality Insights service to analyze text to derive personality traits.",
     "type": "web",
-    "version": "1.2",
+    "version": "1.5",
     "smallIcon": "pi-java-24.png",
     "icon": "pi-java-32.png",
     "largeIcon": "pi-java-50.png",
@@ -19,7 +19,7 @@
     "source" : {
   		"scmType" : "git",
       "url" : "https://github.com/IBM-Bluemix/watson-starter-apps.git",
-  		"appPath" : "personality-insights-java-starter/app"
+  		"appPath" : "pi-java/app"
   	},
     "docURL": "http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/personality-insights.html",
     "runtime": {
