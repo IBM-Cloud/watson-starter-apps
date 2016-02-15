@@ -1,0 +1,33 @@
+{
+  "name": "Conversational Agent: Movie Assistant",
+  "services": [{
+    "name": "natural_language_classifier",
+    "plan": "standard"
+  }, {
+    "name": "dialog",
+    "plan": "standard"
+  }],
+  "defaultMemory": 512,
+  "startCommand": "npm start",
+  "description": "A sample application that highlights the combination of the Dialog and Natural Language Classifier services to create a Conversational Agent.",
+  "type": "web",
+  "version": "0.5",
+  "smallIcon": "icon-24.png",
+  "icon": "icon-32.png",
+  "largeIcon": "icon-150.png",
+  "featuredIcon": "icon-150.png",
+  "source": {
+    "scmType": "git",
+    "url" : "https://github.com/IBM-Bluemix/watson-starter-apps.git",
+    "appPath": "ca/app"
+  },
+  "docURL": "https://github.com/watson-developer-cloud/movie-assistant",
+  "system_tags": ["ibm_created"],
+  "runtime_id": "763dcb4a-8642-4676-ae17-ca5bd032ad9e",
+  "runtime": {
+    "name": "SDK for Node.js™",
+    "description": "Quickly get started with SDK for Node.js™."
+  },
+  "categories": ["boilerplate"],
+  "runtime_template_id": "nodejsHelloWorld"
+}

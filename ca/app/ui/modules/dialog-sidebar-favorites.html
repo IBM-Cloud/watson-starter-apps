@@ -1,0 +1,32 @@
+<!----------------------------------------------------------------------------
+   Copyright IBM Corp. 2015
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+------------------------------------------------------------------------------>
+<div class="dialog-favorites-sidebar">
+    <div ng-show="dialogCtrl.getFavorites().length == 0" class="dialog-no-favorites">
+        <span class="dialog-no-favorites-text">0 Favorites</span>
+    </div>
+    <div style="background-image: url('{{favorite.poster_path}}');{{favorite.poster_path.search('html')?'':'background:#323232'}}" 
+          class="dialog-favorite-image" 
+          ng-if="dialogCtrl.getFavorites().length > 0"
+          ng-click="dialogCtrl.selectMovie(favorite)"
+          ng-repeat="favorite in dialogCtrl.getFavorites()" >
+           <span class="dialog-unfavorite-overlay">
+              <img class="dialog-fav-del" ng-click="dialogCtrl.toggleFavorite(favorite)" src="./images/Unfavorite.svg">
+           </span>
+          <div style="position:absolute;" ng-if="!(favorite.poster_path.search('html'))">
+              <p class="dialog-favorite-left-movie-poster" >{{favorite.movie_name}} </p>
+         </div>
+    </div>
+</div>

@@ -3,9 +3,10 @@ This repository contains the Watson starter apps listed in the Bluemix Catalog. 
 
 Started apps included in this repository:
  * Personality Insights - Java
- * Personality Insights - Nodejs  
+ * Personality Insights - Nodejs
+ * Conversational Agent: Movie Assistant
 
-![starter apps](http://s17.postimg.org/bqcusezfj/Screen_Shot_2015_07_03_at_5_28_11_PM.png)
+![starter apps](http://s9.postimg.org/m564n9zbz/Screen_Shot_2016_02_15_at_4_27_23_PM.png)
 
 ## Developing and Contributing
 
