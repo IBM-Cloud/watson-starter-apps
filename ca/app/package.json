@@ -1,10 +1,10 @@
 {
   "name": "movie-assistant",
-  "version": "0.1.1",
+  "version": "0.5.1",
   "description": "A sample nodejs app for Bluemix that shows how to combine Natural Language Classifier with Dialog",
   "repository": {
     "type": "git",
-    "url": "https://github.com/watson-developer-cloud/movie-assistant-nodejs.git"
+    "url": "https://github.com/watson-developer-cloud/conversational-agent-application-starter-kit.git"
   },
   "author": "IBM Corp.",
   "contributors": [
@@ -15,17 +15,17 @@
   ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/watson-developer-cloud/movie-assistant-nodejs/issues"
+    "url": "https://github.com/watson-developer-cloud/conversational-agent-application-starter-kit/issues"
   },
   "scripts": {
-    "start": "node ./training/setup.js && node app.js",
-    "postinstall": "gulp build",
-    "train": "node ./training/setup.js"
+    "start": "node app.js",
+    "postinstall": "gulp build"
   },
   "engines": {
     "node": "4.2.1"
   },
   "dependencies": {
+    "async": "^1.5.2",
     "body-parser": "^1.13.2",
     "errorhandler": "^1.4.1",
     "express": "^4.12.2",

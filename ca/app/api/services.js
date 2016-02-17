@@ -46,6 +46,7 @@ module.exports = {
     version: 'v1',
     path: { dialog_id: DIALOG_ID }
   }),
+  dialog_id : DIALOG_ID,
 
   // if an API key for TMDB isn't provided, use the mock module to mimic the API
   movieDB: require(TMDB_API_KEY ? './moviedb' : './moviedb-mock')(TMDB_API_KEY),
@@ -55,5 +56,6 @@ module.exports = {
     password: '<password>',
     version: 'v1',
     path: { classifier_id: CLASSIFIER_ID }
-  })
+  }),
+  classifier_id : CLASSIFIER_ID
 };

@@ -1,3 +1,4 @@
+#!/bin/env node
 /**
  * Copyright 2015 IBM Corp. All Rights Reserved.
  *
@@ -17,15 +18,14 @@
 'use strict';
 
 var watson = require('watson-developer-cloud'),
-  extend = require('util')._extend,
-  fs     = require('fs');
-
-console.log('Training...');
+  extend   = require('util')._extend,
+  async    = require('async'),
+  fs       = require('fs');
 
 // load the environment variables
 if (fs.existsSync('../.env.js')){
   console.log('Loading environment variables from .env.js');
-  extend(process.env,require('../.env.js'));
+  extend(process.env, require('../.env.js'));
 }
 
 var dialogFile = __dirname + '/dialog_id';
@@ -48,37 +48,75 @@ var classifierService = watson.natural_language_classifier({
   version: 'v1'
 });
 
-if (!fs.existsSync(dialogFile) || fs.readFileSync(dialogFile, 'utf8') === '') {
-  dialogService.createDialog({
-    name: 'movies-' + new Date().valueOf(),
-    file: fs.createReadStream(dialogTrainingFile)
-  }, function(err, dialog) {
-    if (err) {
-      console.log('Error creating the dialog, did you create the service?', err);
-      process.exit(1);
+/**
+ * Trains a dialog if the content of /training/dialog_id is null or empty
+ */
+function trainDialog(callback) {
+  fs.readFile(dialogFile, 'utf8', function (err, data) {
+    if (err)
+      callback(err);
+    else if (data === '') {
+      dialogService.createDialog({
+        name: 'movies-' + new Date().valueOf(),
+        file: fs.createReadStream(dialogTrainingFile)
+      }, function(err, dialog) {
+        if (err) {
+          callback(err);
+        } else {
+          fs.writeFileSync(dialogFile, dialog.dialog_id);
+          console.log('[dialog]: dialog trained -- id=', dialog.dialog_id);
+          callback(null);
+        }
+      });
     } else {
-      fs.writeFileSync(dialogFile, dialog.dialog_id);
-      console.log('   Dialog trained');
+      console.log('[dialog]: dialog already trained -- id=', data);
+      callback(null);
     }
   });
-} else {
-  console.log('   Dialog already trained');
 }
 
-if (!fs.existsSync(classifierFile) || fs.readFileSync(classifierFile, 'utf8') === '') {
-  classifierService.create({
-    language: 'en',
-    name: 'movies-' + new Date().valueOf(),
-    training_data: fs.createReadStream(classifierTrainingFile)
-  }, function(err, classifier) {
-    if (err) {
-      console.log('Error creating the classifier, did you create the service?', err);
-      process.exit(1);
+/**
+ * Trains a classifier if the content of /training/classifier_id is null or empty
+ */
+function trainClassifier(callback) {
+  fs.readFile(classifierFile, 'utf8', function (err, data) {
+    if (err)
+      callback(err);
+    else if (data === '') {
+      classifierService.create({
+        language: 'en',
+        name: 'movies-' + new Date().valueOf(),
+        training_data: fs.createReadStream(classifierTrainingFile)
+      }, function(err, classifier) {
+        if (err) {
+          callback(err);
+        } else {
+          fs.writeFileSync(classifierFile, classifier.classifier_id);
+          console.log('[classifier]: classifier is being trained -- id=', classifier.classifier_id);
+          callback(null);
+        }
+      });
     } else {
-      fs.writeFileSync(classifierFile, classifier.classifier_id);
-      console.log('   Classifier is being trained');
+      console.log('[classifier]: classifier already trained -- id=', data);
+      callback(null);
     }
   });
-} else {
-  console.log('   Natural Language Classifier already trained');
 }
+
+
+var train = function(cb) {
+  console.log('Training...');
+
+  async.parallel([trainDialog, trainClassifier], function (error) {
+    if (error)
+      cb(error);
+    else
+      cb(null);
+  });
+};
+
+module.exports = { train: train };
+
+// if running as an script
+if (require.main === module)
+  train(console.log);

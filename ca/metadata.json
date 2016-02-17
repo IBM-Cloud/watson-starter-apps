@@ -11,7 +11,7 @@
   "startCommand": "npm start",
   "description": "A sample application that highlights the combination of the Dialog and Natural Language Classifier services to create a Conversational Agent.",
   "type": "web",
-  "version": "0.5",
+  "version": "0.5.1",
   "smallIcon": "icon-24.png",
   "icon": "icon-32.png",
   "largeIcon": "icon-150.png",

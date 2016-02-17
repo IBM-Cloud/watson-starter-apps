@@ -20,8 +20,7 @@ var express  = require('express'),
   app        = express(),
   extend     = require('util')._extend,
   pkg        = require('./package.json'),
-  fs         = require('fs'),
-  trim       = require('trim'),
+  training   = require('./training/setup'),
   Q          = require('q');
 
 
@@ -31,16 +30,27 @@ require('./config/express')(app);
 var PROMPT_MOVIE_SELECTED = 'USER CLICKS BOX';
 var PROMPT_MOVIES_RETURNED = 'UPDATE NUM_MOVIES';
 var PROMPT_CURRENT_INDEX = 'UPDATE CURRENT_INDEX';
+var log = console.log.bind(null, '  ');
 
-var apis = require('./api/services');
+var apis = null;
 
-var converse = Q.nfbind(apis.dialog.conversation.bind(apis.dialog));
-var updateProfile = Q.nfbind(apis.dialog.updateProfile.bind(apis.dialog));
-var getIntent = Q.nfbind(apis.classifier.classify.bind(apis.classifier));
-var searchMovies = Q.nfbind(apis.movieDB.searchMovies.bind(apis.movieDB));
-var getMovieInformation = Q.nfbind(apis.movieDB.getMovieInformation.bind(apis.movieDB));
+// promises
+var converse, updateProfile, getIntent, searchMovies, getMovieInformation = null;
 
-var log = console.log.bind(null,'  ');
+// train the service and create the promises with the result
+training.train(function(err) {
+	if (err){
+    console.log('ERROR:', err.error);
+  }
+
+  apis = require('./api/services');
+
+  converse = Q.nfbind(apis.dialog.conversation.bind(apis.dialog));
+  updateProfile = Q.nfbind(apis.dialog.updateProfile.bind(apis.dialog));
+  getIntent = Q.nfbind(apis.classifier.classify.bind(apis.classifier));
+  searchMovies = Q.nfbind(apis.movieDB.searchMovies.bind(apis.movieDB));
+  getMovieInformation = Q.nfbind(apis.movieDB.getMovieInformation.bind(apis.movieDB));
+});
 
 // create the conversation
 app.post('/api/create_conversation', function(req, res, next) {
@@ -135,7 +145,7 @@ app.get('/api/movies', function(req, res, next) {
       client_id: req.body.client_id,
       name_values: [
         { name:'Selected_Movie', value: movie.movie_name },
-        { name:'Popularity_Score', value: movie.popularity*10 }
+        { name:'Popularity_Score', value: movie.popularity * 10 }
       ]
     };
     return updateProfile(profile)
@@ -159,18 +169,9 @@ app.get('/api/movies', function(req, res, next) {
  * Returns the classifier_id and dialog_id to the user.
  */
 app.get('/api/services', function(req, res) {
-  var services = {};
-
-  fs.readFile(__dirname +'/training/dialog_id', 'utf8', function(error, id){
-    if (!error)
-      services.dialog_id = trim(id);
-
-    fs.readFile(__dirname +'/training/classifier_id', 'utf8', function(error, id){
-      if (!error)
-        services.classifier_id = trim(id);
-
-      res.json(services);
-    });
+  res.json({
+    dialog_id: apis ? apis.dialog_id : 'Unknown',
+    classifier_id: apis ? apis.classifier_id : 'Unknown'
   });
 });
 
