@@ -21,7 +21,7 @@
     "url" : "https://github.com/IBM-Bluemix/watson-starter-apps.git",
     "appPath": "ca/app"
   },
-  "docURL": "https://github.com/watson-developer-cloud/movie-assistant",
+  "docURL": "https://github.com/watson-developer-cloud/conversational-agent-application-starter-kit",
   "system_tags": ["ibm_created"],
   "runtime_id": "763dcb4a-8642-4676-ae17-ca5bd032ad9e",
   "runtime": {
