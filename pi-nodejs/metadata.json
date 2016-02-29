@@ -3,7 +3,7 @@
     "services": [
         {
             "name": "personality_insights",
-            "plan": "standard"
+            "plan": "tiered"
         }
     ],
     "defaultMemory": 512,
