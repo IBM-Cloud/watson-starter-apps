@@ -29,6 +29,10 @@ module.exports = function (app) {
 
   // 2. helmet with defaults
   app.use(helmet());
+  app.use(helmet.frameguard({
+    action: 'allow-from',
+    domain: 'https://watson-experience.mybluemix.net/'
+  }));
 
   // 3. rate limiting
   var limiter = rateLimit({

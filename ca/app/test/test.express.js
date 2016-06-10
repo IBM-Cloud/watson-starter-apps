@@ -16,21 +16,17 @@
 
 'use strict';
 
-// Module dependencies
-var express    = require('express'),
-  bodyParser   = require('body-parser');
+var app = require('../app');
+var request = require('supertest');
 
-module.exports = function (app) {
+describe('express', function() {
 
-  app.use(bodyParser.urlencoded({ extended: true }));
-  app.use(bodyParser.json());
-  app.enable('trust proxy');
+  it('load home page when GET /', function(done) {
+    request(app).get('/').expect(200, done);
+  });
 
-  // Setup static public directory
-  app.use(express.static(__dirname + '/../public'));
+  it('404 when the page does not exist', function(done) {
+    request(app).get('/foo/bar').expect(404, done);
+  });
 
-  // Only loaded when is running in bluemix
-  if (process.env.VCAP_APPLICATION)
-    require('./security')(app);
-
-};
+});

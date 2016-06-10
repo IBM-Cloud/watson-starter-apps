@@ -31,8 +31,6 @@ body {
 }
 
 :after, :before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
@@ -87,8 +85,6 @@ hr {
     border: 0;
     border-top: 1px solid #eee;
     height: 0;
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
     box-sizing: content-box;
 }
 
@@ -136,10 +132,7 @@ td, th {
     background-image: none;
     border: 1px solid #ccc;
     border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 
@@ -628,8 +621,6 @@ html, body {
     cursor: pointer;
     visibility: visible;
     opacity: 1;
-    -webkit-transform: scale(1);
-    -ms-transform: scale(1);
     transform: scale(1);
     transition: 0.3s cubic-bezier(0.7, 0, 0.5, 1.34);
     overflow:hidden;
@@ -1036,7 +1027,6 @@ html, body {
 .dialog-movie, .dialog-movie.ng-enter.ng-enter-active {
     text-align: center;
     opacity: 1;
-    -webkit-transition: 0.7s linear all;
     transition: 0.7s linear all;
 }
 
@@ -1047,11 +1037,9 @@ html, body {
 .dialog-movie.ng-enter-stagger, .dialog-movie.ng-leave-stagger, .dialog-movie.ng-move-stagger {
     /* 200ms will be applied between each sucessive enter operation */
     /* this will have a 100ms delay between each successive leave animation */
-    -webkit-transition-delay: 0.2s;
     transition-delay: 0.2s;
     /* in case the stagger doesn't work then these two values
      must be set to 0 to avoid an accidental CSS inheritance */
-    -webkit-transition-duration: 0s;
     transition-duration: 0s;
 }
 

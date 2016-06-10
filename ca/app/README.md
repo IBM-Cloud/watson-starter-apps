@@ -1,13 +1,17 @@
-# Conversational Agent: Movie Assistant
+# Conversational Agent: Movie Assistant [![Build Status](https://travis-ci.org/watson-developer-cloud/conversational-agent-application-starter-kit.svg?branch=master)](https://travis-ci.org/watson-developer-cloud/conversational-agent-application-starter-kit)
 
-This application is an **Application Starter Kit** (ASK) that is designed to get you up and running quickly with a common industry pattern, and to provide information about best practices around Watson services. This application was created to highlight the combination of the [Dialog][dialog] and [Natural Language Classifier][classifier] (NLC) services as a [Conversational Agent](#about-the-conversational-agent-pattern). This application can serve as the basis for your own applications that follow that pattern. Another application that demonstrates this pattern is the [What's in Theaters](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html#whats-in-theaters) application that is available in the Watson Developer Cloud website's [Application Gallery](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html).
+This application is an **Application Starter Kit** (ASK) that is
+designed to get you up and running quickly with a common industry pattern, and to provide information about best practices around Watson services. This application was created to highlight the combination of the [Dialog][dialog] and [Natural Language Classifier][classifier] (NLC) services as a [Conversational Agent](#about-the-conversational-agent-pattern). This application can serve as the basis for your own applications that follow that pattern. Another application that demonstrates this pattern is the [What's in Theaters](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html#whats-in-theaters) application that is available in the Watson Developer Cloud website's [Application Gallery](http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/gallery.html).
 
-Give it a try! Click the button below to fork the repository that contains the source code for this application into IBM DevOps Services, which then deploys your own copy of this application on Bluemix automtically:
+Give it a try! Click the button below to fork the repository that contains the source code for this application into IBM DevOps Services, which then deploys your own copy of this application on Bluemix automatically:
 
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/conversational-agent-application-starter-kit)
 
+You can see a version of this app that is already running by clicking
+[here](https://conversational-agent-application-starter-kit.mybluemix.net/).
+
 **IMPORTANT:**
-  1. The application uses mock data for movie suggestions until you provide an API Key for [themoviedb.com](https://www.themoviedb.org/documentation/api) in your application's source code, which you can not do when using the **Deploy to Bluemix** button. See [step 9](#step9) in the [Getting Started](#getting-started) section for information about getting and using an API key in an application that you create and deploy manually.
+  1. The application uses mock data for movie suggestions until you provide an API Key for [themoviedb.com](https://www.themoviedb.org/documentation/api) in your application's source code, which you can not do when using the **Deploy to Bluemix** button. See [step 10](#step10) in the [Getting Started](#getting-started) section for information about getting and using an API key in an application that you create and deploy manually.
   2. When the application is first run, it will automatically train a classifier for the Natural Language Classifier service. This process takes about 20 minutes. While the classifier is being trained, the user can only interact with the Dialog service.
 
 ## Table of Contents
@@ -42,7 +46,7 @@ The application is written in [Node.js](http://nodejs.org/) and uses [npm](https
 
 **Important:** If you used the `Deploy to Bluemix` button to deploy an instance of this application to Bluemix automatically, you will have to delete that application and the services that it used before you can build and deploy an application manually. You can use the `cf apps` command to see the instances of the Dialog and NLC services that your application uses, use the `cf delete application-name` command to delete the application, and use the `cf delete-services service-name` command to delete each of the Dialog and NLC service instance that the application used.
 
-The following instructions explain how to [fork the project on GitHub](https://github.com/watson-developer-cloud/conversational-agent-application-starter-kitfork-destination-box) and push that fork to Bluemix using the `cf` command-line interface (CLI) for Cloud Foundry. If you want to run the application locally, see the next section, [Running the application locally](#running-the-application-locally):
+The following instructions explain how to [fork the project on GitHub](https://help.github.com/articles/fork-a-repo/) and push that fork to Bluemix using the `cf` command-line interface (CLI) for Cloud Foundry. If you want to run the application locally, see the next section, [Running the application locally](#running-the-application-locally):
 
   1. Log into GitHub and fork the project repository. Clone your fork to a folder on your local system and change to that folder.
 
@@ -50,10 +54,12 @@ The following instructions explain how to [fork the project on GitHub](https://g
 
   3. If it is not already installed on your system, download and install the [Cloud-foundry CLI][cloud_foundry] tool.
 
-  4. If it is not already installed on your system, install [Node.js](http://nodejs.org/). Installing Node.js will also install the `npm` command.
+  4. If it is not already installed on your system, install [Node.js](http://nodejs.org/). Installing Node.js will also install the `npm` command.  Make sure to use node version ```4.2.1``` as specified in ```package.json``` or you may run into problems like installation issues.
 
-  <a name="step5"></a>
-  5. Edit the `manifest.yml` file in the folder that contains your fork and replace `application-name` with a unique name for your copy of the application. The name that you specify determines the application's URL, such as `application-name.mybluemix.net`. The relevant portion of the `manifest.yml` file looks like the following:
+  5. If it is not already installed on your system, install Python from your system's repository or from the [Python.org site](https://www.python.org/downloads/release/python-2711/).
+
+  <a name="step6"></a>
+  6. Edit the `manifest.yml` file in the folder that contains your fork and replace `application-name` with a unique name for your copy of the application. The name that you specify determines the application's URL, such as `application-name.mybluemix.net`. The relevant portion of the `manifest.yml` file looks like the following:
 
     ```yml
     applications:
@@ -66,36 +72,36 @@ The following instructions explain how to [fork the project on GitHub](https://g
       memory: 512M
     ```
 
-  6. Connect to Bluemix by running the following commands in a terminal window:
+  7. Connect to Bluemix by running the following commands in a terminal window:
 
     ```sh
     $ cf api https://api.ng.bluemix.net
     $ cf login -u <your-Bluemix-ID> -p <your-Bluemix-password>
     ```
 
-  7. Create an instance of the Dialog service in Bluemix by running the following command:
+  8. Create an instance of the Dialog service in Bluemix by running the following command:
 
     ```sh
     $ cf create-service dialog standard dialog-service
     ```
     **Note:** You will see a message that states "Attention: The plan `standard` of service `dialog` is not free.  The instance `dialog-service` will incur a cost.  Contact your administrator if you think this is in error.". The first 1000 API calls per month to the Dialog service are free under the standard plan, so there will be no charge if you remain below this limit.
 
-  8. Create an instance of the Natural Language Classifier service in Bluemix by running the following command:
+   9. Create an instance of the Natural Language Classifier service in Bluemix by running the following command:
 
     ```sh
     $ cf create-service natural_language_classifier standard classifier-service
     ```
-    **Note:** You will see a message that states "Attention: The plan `standard` of service `natural_language_classifier` is not free.  The instance `classifier-service` will incur a cost.  Contact your administrator if you think this is in error.". The first NLC instance that you create is free under the standard plan, so there will be no chanrge if you only create a single classifier instance for use by this application.
+    **Note:** You will see a message that states "Attention: The plan `standard` of service `natural_language_classifier` is not free.  The instance `classifier-service` will incur a cost.  Contact your administrator if you think this is in error.". The first NLC instance that you create is free under the standard plan, so there will be no change if you only create a single classifier instance for use by this application.
 
-  <a name="step9"></a>
-  9. Sign up at [themoviedb.com][the_movie_db] and get an [API key][the_movie_db_api_key].
+  <a name="step10"></a>
+  10. Sign up at [themoviedb.com][the_movie_db] and get an [API key][the_movie_db_api_key].
 
-  10. Add the API key from [themoviedb.com][the_movie_db] to the app by editing the line 29 of the file `api/services.js` to read:
+  11. Add the API key from [themoviedb.com][the_movie_db] to the app by editing the line 29 of the file `api/services.js` to read:
 
     ```js
     var TMDB_API_KEY = process.env.TMDB_API_KEY || <Your themoviedb.com API Key>;
   	```
-  11. Push the updated application live by running the following command:
+  12. Push the updated application live by running the following command:
 
     ```sh
     $ cf push
@@ -106,7 +112,7 @@ The first time it runs, the application can take up to 20 minutes to train the c
   * A dialog flow using: `training/dialog_and_classifier.xml` and writes the dialog id to the file `/training/dialog_id`
   * A classifier using: `training/classifier_training.csv` and writes classifier id to the file `/training/classifier_id`
 
-You should not need to reference these, but if you do, you can retrieve these ids at `application-name.mybluemix.net/api/services`, where `application-name` is the name that you gave your application in [step 5](#step5) of the previous list. The response will be similar to:
+You should not need to reference these, but if you do, you can retrieve these ids at `application-name.mybluemix.net/api/services`, where `application-name` is the name that you gave your application in [step 6](#step6) of the previous list. The response will be similar to:
 
 ```json
 {
@@ -117,7 +123,7 @@ You should not need to reference these, but if you do, you can retrieve these id
 
 ## Running the application locally
 
-First, make sure that you followed steps 1 through 9 in the [previous section](#getting-started) and that you are still logged in to Bluemix. Next:
+First, make sure that you followed steps 1 through 11 in the [previous section](#getting-started) and that you are still logged in to Bluemix. Next:
 
   1. Create a `.env.js` file in the root directory of the project with the following content:
 
@@ -174,12 +180,18 @@ First, make sure that you followed steps 1 through 9 in the [previous section](#
     $ npm install
     ```
 
-  4. Start the application by running:
+  4. Install Gulp globally if not already
+
+    ```sh
+    $ npm install -g gulp
+    ```
+
+  5. Start the application by running:
 
     ```sh
     $ gulp
     ```
-  5. Open [http://localhost:5000](http://localhost:5000) to see the running application.
+  6. Open [http://localhost:5000](http://localhost:5000) to see the running application.
 
 ## About the Conversational Agent pattern
 

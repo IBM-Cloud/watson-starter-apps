@@ -40,7 +40,7 @@ var converse, updateProfile, getIntent, searchMovies, getMovieInformation = null
 // train the service and create the promises with the result
 training.train(function(err) {
 	if (err){
-    console.log('ERROR:', err.error);
+    log('ERROR:', err.error);
   }
 
   apis = require('./api/services');
@@ -177,9 +177,4 @@ app.get('/api/services', function(req, res) {
 
 // error-handler application settings
 require('./config/error-handler')(app);
-
-var port = process.env.VCAP_APP_PORT || 3000;
-var host = process.env.VCAP_APP_HOST || 'localhost';
-app.listen(port);
-
-console.log(pkg.name + ':' + pkg.version, host + ':' + port);
+module.exports = app;
