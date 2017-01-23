@@ -21,7 +21,7 @@
     "url" : "https://github.com/IBM-Bluemix/watson-starter-apps.git",
     "appPath": "ca/app"
   },
-  "docURL": "https://www.ng.bluemix.net/docs/starters/ConversationalAgentStarter/index.html",
+  "docURL": "https://console.ng.bluemix.net/docs/starters/ConversationalAgentStarter/index.html",
   "system_tags": ["ibm_created"],
   "runtime_id": "763dcb4a-8642-4676-ae17-ca5bd032ad9e",
   "runtime": {
